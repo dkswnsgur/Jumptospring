@@ -2,6 +2,7 @@ package com.example.JumpSpring.service;
 
 import com.example.JumpSpring.dto.Answer;
 import com.example.JumpSpring.dto.Question;
+import com.example.JumpSpring.dto.SiteUser;
 import com.example.JumpSpring.repository.AnswerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,11 +14,12 @@ import java.time.LocalDateTime;
 public class AnswerService {
     private final AnswerRepository answerRepository;
 
-    public void create(Question question, String content) {
+    public void create(Question question, String content, SiteUser author) {
         Answer answer = new Answer();
         answer.setContent(content);
         answer.setCreateDate(LocalDateTime.now());
         answer.setQuestion(question);
+        answer.setAuthor(author);
         this.answerRepository.save(answer);
     }
 }
